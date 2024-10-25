@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose'); 
 const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 const app = express();
+const path = require('path');
 
 const uri = "mongodb+srv://test_user:1234Test@cluster0.zho41.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -30,5 +32,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/stuff', stuffRoutes);
+app.use('/api/auth', userRoutes);
+app.use('/api/user', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
